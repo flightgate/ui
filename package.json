@@ -8,10 +8,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "lint": "biome lint .",
-    "lint:fix": "biome lint . --write",
-    "format": "biome format . --write",
-    "check": "biome check . --write",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
     "ts:check": "tsc --noEmit",
     "changeset": "changeset",
     "version": "changeset version",
@@ -22,7 +20,8 @@
     "expo": ">=52.0.0",
     "react": ">=18.0.0",
     "react-native": ">=0.76.0",
-    "styled-components": ">=6.0.0"
+    "styled-components": ">=6.0.0",
+    "react-hook-form": ">=7.0.0"
   },
   "engines": {
     "node": ">=22.0.0",
@@ -39,6 +38,7 @@
     "husky": "9.1.7",
     "lint-staged": "17.0.4",
     "styled-components": "6.1.18",
+    "react-hook-form": "7.54.2",
     "typescript": "6.0.3"
   }
 }

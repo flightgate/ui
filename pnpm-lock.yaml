@@ -30,6 +30,9 @@ importers:
       lint-staged:
         specifier: 17.0.4
         version: 17.0.4
+      react-hook-form:
+        specifier: 7.54.2
+        version: 7.54.2(react@19.2.6)
       styled-components:
         specifier: 6.1.18
         version: 6.1.18(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -2233,6 +2236,12 @@ packages:
     resolution: {integrity: sha512-0prMI+hvBbPjsWnxDLxlCGyM8PN6UuWjEUCYmZhO67xIV9Xasa/r/vDnq+Xyq4Lo27g8QSbO5YzARu0D1Sps3g==}
     peerDependencies:
       react: ^19.2.6
+
+  react-hook-form@7.54.2:
+    resolution: {integrity: sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
@@ -5497,6 +5506,10 @@ snapshots:
     dependencies:
       react: 19.2.6
       scheduler: 0.27.0
+
+  react-hook-form@7.54.2(react@19.2.6):
+    dependencies:
+      react: 19.2.6
 
   react-is@18.3.1: {}
 
