@@ -29,16 +29,16 @@ const StyledTrigger = styled.TouchableOpacity<{ $disabled: boolean }>`
     $disabled ? theme.colors.bgSecondary : theme.colors.bgPrimary};
 `;
 
-const StyledChevron = styled.View<{ $open: boolean }>`
+// Transform via CSS string não funciona no React Native — aplicado via style prop no JSX
+const StyledChevron = styled.View`
   width: 0;
   height: 0;
   border-left-width: 5px;
   border-right-width: 5px;
-  border-top-width: 5px;
+  border-top-width: 6px;
   border-left-color: transparent;
   border-right-color: transparent;
   border-top-color: ${({ theme }) => theme.colors.textSecondary};
-  transform: ${({ $open }) => ($open ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
 
 const StyledOverlay = styled.View`
@@ -93,7 +93,8 @@ export function Dropdown({
         <Text size="md" color={selected ? 'textPrimary' : 'textTertiary'}>
           {selected ? selected.label : placeholder}
         </Text>
-        <StyledChevron $open={open} />
+        {/* transform aplicado via style — CSS transform strings não são suportadas em styled-components/native */}
+        <StyledChevron style={{ transform: [{ rotate: open ? '180deg' : '0deg' }] }} />
       </StyledTrigger>
 
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>

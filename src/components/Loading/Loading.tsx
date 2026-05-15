@@ -1,4 +1,4 @@
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
 export type LoadingSize = 'sm' | 'md' | 'lg';
@@ -9,16 +9,13 @@ export interface LoadingProps {
   fullscreen?: boolean;
 }
 
+// ActivityIndicator nativamente só aceita 'small' | 'large' de forma confiável em iOS+Android.
+// Para 'lg', usamos 'large' dentro de um View com scale — o transform no wrapper funciona
+// de forma confiável, ao contrário de aplicar scale diretamente no ActivityIndicator nativo.
 const RN_SIZE: Record<LoadingSize, 'small' | 'large'> = {
   sm: 'small',
   md: 'large',
   lg: 'large',
-};
-
-const SCALE: Record<LoadingSize, number> = {
-  sm: 1,
-  md: 1,
-  lg: 1.5,
 };
 
 const StyledFullscreen = styled.View`
@@ -38,11 +35,11 @@ export function Loading({ size = 'md', color, fullscreen = false }: LoadingProps
   const resolvedColor = color ?? theme.colors.primary;
 
   const indicator = (
-    <ActivityIndicator
-      size={RN_SIZE[size]}
-      color={resolvedColor}
-      style={{ transform: [{ scale: SCALE[size] }] }}
-    />
+    // Wrapper View garante que o transform scale funcione de forma confiável
+    // em componentes nativos como ActivityIndicator
+    <View style={size === 'lg' ? { transform: [{ scale: 1.5 }] } : undefined}>
+      <ActivityIndicator size={RN_SIZE[size]} color={resolvedColor} />
+    </View>
   );
 
   if (fullscreen) {

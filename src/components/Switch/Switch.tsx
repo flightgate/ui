@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form';
 import { Animated } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
@@ -33,67 +33,72 @@ const StyledTrack = styled.View<{ $on: boolean }>`
   padding: 0 ${THUMB_OFFSET}px;
 `;
 
+interface SwitchControlProps {
+  value: boolean;
+  onChange: (v: boolean) => void;
+  disabled: boolean;
+  label?: string;
+}
+
+// Componente interno separado para que useRef possa inicializar com o valor correto do field
+// e useEffect sincronize mudanças externas (e.g. reset do formulário).
+function SwitchControl({ value, onChange, disabled, label }: SwitchControlProps) {
+  const theme = useTheme();
+  const translateX = useRef(new Animated.Value(value ? THUMB_TRAVEL : 0)).current;
+
+  useEffect(() => {
+    Animated.spring(translateX, {
+      toValue: value ? THUMB_TRAVEL : 0,
+      useNativeDriver: true,
+      bounciness: 4,
+    }).start();
+  }, [value, translateX]);
+
+  return (
+    <StyledRow
+      $disabled={disabled}
+      disabled={disabled}
+      activeOpacity={0.8}
+      onPress={() => onChange(!value)}
+    >
+      <StyledTrack $on={value}>
+        <Animated.View
+          style={{
+            width: THUMB_SIZE,
+            height: THUMB_SIZE,
+            borderRadius: THUMB_SIZE / 2,
+            backgroundColor: theme.colors.white,
+            transform: [{ translateX }],
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.15,
+            shadowRadius: 2,
+            elevation: 2,
+          }}
+        />
+      </StyledTrack>
+      {label && (
+        <Text size="md" color="textPrimary">
+          {label}
+        </Text>
+      )}
+    </StyledRow>
+  );
+}
+
 export function Switch<T extends FieldValues>({
   name,
   control,
   label,
   disabled = false,
 }: SwitchProps<T>) {
-  const theme = useTheme();
-  const translateX = useRef(new Animated.Value(0)).current;
-
-  const animate = (on: boolean) => {
-    Animated.spring(translateX, {
-      toValue: on ? THUMB_TRAVEL : 0,
-      useNativeDriver: true,
-      bounciness: 4,
-    }).start();
-  };
-
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field: { value, onChange } }) => {
-        const isOn = !!value;
-
-        const handlePress = () => {
-          const next = !isOn;
-          animate(next);
-          onChange(next);
-        };
-
-        return (
-          <StyledRow
-            $disabled={disabled}
-            disabled={disabled}
-            activeOpacity={0.8}
-            onPress={handlePress}
-          >
-            <StyledTrack $on={isOn}>
-              <Animated.View
-                style={{
-                  width: THUMB_SIZE,
-                  height: THUMB_SIZE,
-                  borderRadius: THUMB_SIZE / 2,
-                  backgroundColor: theme.colors.white,
-                  transform: [{ translateX }],
-                  shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 1 },
-                  shadowOpacity: 0.15,
-                  shadowRadius: 2,
-                  elevation: 2,
-                }}
-              />
-            </StyledTrack>
-            {label && (
-              <Text size="md" color="textPrimary">
-                {label}
-              </Text>
-            )}
-          </StyledRow>
-        );
-      }}
+      render={({ field: { value, onChange } }) => (
+        <SwitchControl value={!!value} onChange={onChange} disabled={disabled} label={label} />
+      )}
     />
   );
 }

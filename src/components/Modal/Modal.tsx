@@ -16,7 +16,7 @@ const StyledHeader = styled.View`
   justify-content: space-between;
   padding: ${({ theme }) => theme.spacing.md}px;
   border-bottom-width: 1px;
-  border-bottom-color: ${({ theme }) => theme.colors.border};
+  border-bottom-color: ${({ theme }) => theme.colors.borderPrimary};
 `;
 
 const StyledContent = styled.View`
@@ -31,8 +31,6 @@ export const Modal = forwardRef<Modalize, ModalProps>(
     return (
       <Modalize
         ref={ref}
-        alwaysOpen={undefined}
-        modalHeight={undefined}
         onOpen={onOpen}
         onClose={onClose}
         adjustToContentHeight={false}

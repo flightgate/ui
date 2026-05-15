@@ -19,7 +19,7 @@ const colors = (input: ThemeColors) => {
     transparent: 'transparent',
 
     bgPrimary: '#F4F6FC',
-    bgSecondary: '#8097B1',
+    bgSecondary: '#E2E8F4',
     bgTertiary: '#28292B',
 
     borderPrimary: '#EEF2FF',

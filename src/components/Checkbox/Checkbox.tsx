@@ -27,13 +27,14 @@ const StyledBox = styled.View<{ $checked: boolean }>`
   align-items: center;
 `;
 
+// Sem transform aqui — CSS transform strings não são suportadas em styled-components/native.
+// O rotate é aplicado via style prop no JSX.
 const StyledCheck = styled.View`
   width: 5px;
   height: 9px;
   border-right-width: 2px;
   border-bottom-width: 2px;
   border-color: ${({ theme }) => theme.colors.white};
-  transform: rotate(45deg) translate(-1px, -1px);
 `;
 
 export function Checkbox<T extends FieldValues>({
@@ -53,7 +54,13 @@ export function Checkbox<T extends FieldValues>({
           activeOpacity={0.7}
           onPress={() => onChange(!value)}
         >
-          <StyledBox $checked={!!value}>{!!value && <StyledCheck />}</StyledBox>
+          <StyledBox $checked={!!value}>
+            {!!value && (
+              <StyledCheck
+                style={{ transform: [{ rotate: '45deg' }, { translateX: -1 }, { translateY: -1 }] }}
+              />
+            )}
+          </StyledBox>
           {label && (
             <Text size="md" color="textPrimary">
               {label}

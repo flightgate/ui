@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, type LayoutChangeEvent } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 import type { SpacingKey } from '../../theme';
 
@@ -22,43 +22,63 @@ const StyledBlock = styled.View<{ $width: number | string; $height: number; $rad
   overflow: hidden;
 `;
 
-const StyledShimmer = styled(Animated.View)`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 60%;
-  background-color: rgba(255, 255, 255, 0.45);
-`;
-
 const StyledGroup = styled.View<{ $gap: number }>`
   gap: ${({ $gap }) => $gap}px;
 `;
 
-function SkeletonBlock({
-  width = '100%',
-  height = 16,
-  borderRadius = 8,
-}: Pick<SkeletonProps, 'width' | 'height' | 'borderRadius'> & { key?: string }) {
-  const shimmer = useRef(new Animated.Value(-1)).current;
+interface SkeletonBlockProps {
+  width?: number | `${number}%`;
+  height?: number;
+  borderRadius?: number;
+}
+
+function SkeletonBlock({ width = '100%', height = 16, borderRadius = 8 }: SkeletonBlockProps) {
+  const theme = useTheme();
+  const shimmer = useRef(new Animated.Value(0)).current;
+  const [blockWidth, setBlockWidth] = useState(0);
 
   useEffect(() => {
+    if (blockWidth === 0) return;
+
     Animated.loop(
       Animated.timing(shimmer, {
-        toValue: 2,
+        toValue: 1,
         duration: 1200,
         useNativeDriver: true,
       }),
     ).start();
-  }, [shimmer]);
+
+    return () => shimmer.stopAnimation();
+  }, [shimmer, blockWidth]);
 
   const translateX = shimmer.interpolate({
-    inputRange: [-1, 2],
-    outputRange: ['-100%' as unknown as number, '200%' as unknown as number],
+    inputRange: [0, 1],
+    // Usamos valores absolutos em pixels — native driver não suporta strings '%'
+    outputRange: [-blockWidth, blockWidth * 2],
   });
 
+  const handleLayout = (e: LayoutChangeEvent) => {
+    const w = e.nativeEvent.layout.width;
+    if (w > 0 && w !== blockWidth) {
+      setBlockWidth(w);
+    }
+  };
+
   return (
-    <StyledBlock $width={width} $height={height} $radius={borderRadius}>
-      <StyledShimmer style={{ transform: [{ translateX }] }} />
+    <StyledBlock $width={width} $height={height} $radius={borderRadius} onLayout={handleLayout}>
+      {blockWidth > 0 && (
+        <Animated.View
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            width: '60%',
+            // Usa a cor branca do tema para o shimmer — funciona sobre bgSecondary claro
+            backgroundColor: `${theme.colors.white}59`, // 35% opacity
+            transform: [{ translateX }],
+          }}
+        />
+      )}
     </StyledBlock>
   );
 }
@@ -72,6 +92,7 @@ export function Skeleton({
   gap = 'xs',
 }: SkeletonProps) {
   const theme = useTheme();
+
   const resolvedHeight = height ?? (variant === 'text' ? 14 : variant === 'circle' ? 40 : 80);
   const resolvedWidth = width ?? (variant === 'circle' ? resolvedHeight : '100%');
   const resolvedRadius =
