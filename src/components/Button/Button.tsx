@@ -5,7 +5,6 @@ import type { ColorKey, SpacingKey } from '../../theme';
 import { Row } from '../Row';
 import { Text } from '../Text';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps {
@@ -13,39 +12,29 @@ export interface ButtonProps {
   prefixIcon?: ReactNode;
   suffixIcon?: ReactNode;
   gap?: SpacingKey;
-  variant?: ButtonVariant;
+  bg?: ColorKey | 'none';
+  color?: ColorKey;
+  borderColor?: ColorKey;
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   onPress: () => void;
 }
 
-const VARIANT_TEXT_COLOR: Record<ButtonVariant, ColorKey> = {
-  primary: 'white',
-  secondary: 'primary',
-  ghost: 'primary',
-  danger: 'white',
-};
-
 const SIZE_HEIGHT: Record<ButtonSize, number> = { sm: 40, md: 48, lg: 56 };
 
 const StyledButton = styled.TouchableOpacity<{
-  $variant: ButtonVariant;
+  $bg: ColorKey | 'none';
+  $borderColor?: ColorKey;
   $size: ButtonSize;
 }>`
   height: ${({ $size }) => SIZE_HEIGHT[$size]}px;
   padding: 0 ${({ theme }) => theme.spacing.md}px;
-  background-color: ${({ theme, $variant, disabled }) =>
-    disabled
-      ? theme.colors.bgSecondary
-      : $variant === 'primary'
-        ? theme.colors.primary
-        : $variant === 'danger'
-          ? theme.colors.danger
-          : 'transparent'};
-  border-width: ${({ $variant }) => ($variant === 'secondary' ? 1 : 0)}px;
-  border-color: ${({ theme, $variant }) =>
-    $variant === 'secondary' ? theme.colors.borderPrimary : 'transparent'};
+  background-color: ${({ theme, $bg, disabled }) =>
+    disabled ? theme.colors.bgSecondary : $bg === 'none' ? 'transparent' : theme.colors[$bg]};
+  border-width: ${({ $borderColor }) => ($borderColor ? 1 : 0)}px;
+  border-color: ${({ theme, $borderColor }) =>
+    $borderColor ? theme.colors[$borderColor] : 'transparent'};
   border-radius: ${({ theme }) => theme.borderRadius.md}px;
   justify-content: center;
   align-items: center;
@@ -57,7 +46,9 @@ export function Button({
   prefixIcon,
   suffixIcon,
   gap = 'xs',
-  variant = 'primary',
+  bg = 'primary',
+  color,
+  borderColor,
   size = 'md',
   disabled,
   loading,
@@ -69,12 +60,20 @@ export function Button({
     console.error('[@flightgate/ui] Button: requires children, prefixIcon, or suffixIcon');
   }
 
-  const textColor: ColorKey = disabled ? 'textTertiary' : VARIANT_TEXT_COLOR[variant];
-  const indicatorColor =
-    variant === 'secondary' || variant === 'ghost' ? theme.colors.primary : theme.colors.white;
+  const textColor: ColorKey = disabled
+    ? 'textTertiary'
+    : (color ?? (bg === 'none' ? 'primary' : 'white'));
+
+  const indicatorColor = bg === 'none' ? theme.colors.primary : theme.colors.white;
 
   return (
-    <StyledButton $variant={variant} $size={size} disabled={disabled || loading} onPress={onPress}>
+    <StyledButton
+      $bg={bg}
+      $borderColor={borderColor}
+      $size={size}
+      disabled={disabled || loading}
+      onPress={onPress}
+    >
       {loading ? (
         <ActivityIndicator size="small" color={indicatorColor} />
       ) : (

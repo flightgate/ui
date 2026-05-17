@@ -4,7 +4,7 @@ export type { AvatarProps, AvatarSize } from './components/Avatar';
 export { Avatar } from './components/Avatar';
 export type { BadgeProps, BadgeVariant } from './components/Badge';
 export { Badge } from './components/Badge';
-export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button';
+export type { ButtonProps, ButtonSize } from './components/Button';
 export { Button } from './components/Button';
 export type { CardProps } from './components/Card';
 export { Card } from './components/Card';
@@ -40,7 +40,8 @@ export type { TextProps } from './components/Text';
 export { Text } from './components/Text';
 export type { ToastProviderProps } from './components/Toast';
 export { ToastProvider, toast } from './components/Toast';
-export { ThemeProvider } from './providers';
+export { useLoadFonts } from './contexts';
+export { LoadFontsProvider, ThemeProvider } from './providers';
 
 export type {
   BorderRadius,
