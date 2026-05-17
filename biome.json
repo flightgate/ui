@@ -12,11 +12,19 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noExplicitAny": "error"
+      "correctness": {
+        "noUnusedImports": "error",
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": "error"
+      },
+      "performance": {
+        "noNamespaceImport": "error"
       },
       "style": {
         "useConst": "error",
+        "useConsistentArrowReturn": "error",
+        "useImportType": "error",
+        "noNonNullAssertion": "error",
         "noRestrictedImports": {
           "level": "error",
           "options": {
@@ -44,6 +52,17 @@
             ]
           }
         }
+      },
+      "complexity": {
+        "useOptionalChain": "error",
+        "useSimplifiedLogicExpression": "error",
+        "useArrowFunction": "error"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "error",
+        "noConsole": "error",
+        "noExplicitAny": "error",
+        "noVar": "error"
       }
     }
   },

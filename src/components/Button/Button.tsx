@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Row, Text } from 'src/components';
 import type { BorderRadiusToken, ColorToken, SpacingToken } from 'src/theme';
+import { Logger } from 'src/utils';
 import styled, { useTheme } from 'styled-components/native';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -59,7 +60,7 @@ export function Button({
   const theme = useTheme();
 
   if (__DEV__ && !children && !prefixIcon && !suffixIcon) {
-    console.error('[@flightgate/ui] Button: requires children, prefixIcon, or suffixIcon');
+    Logger.error('Button: requires children, prefixIcon, or suffixIcon');
   }
 
   const textColor: ColorToken = disabled

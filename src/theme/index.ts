@@ -4,15 +4,13 @@ import { fontFamily } from './fontFamily';
 import { fontSize } from './fontSize';
 import { spacing } from './spacing';
 
-const createTheme = (themeColors: ThemeColors) => {
-  return {
-    colors: colors(themeColors),
-    fontSize: fontSize(),
-    spacing: spacing(),
-    fontFamily: fontFamily(),
-    borderRadius: borderRadius(),
-  };
-};
+const createTheme = (themeColors: ThemeColors) => ({
+  colors: colors(themeColors),
+  fontSize: fontSize(),
+  spacing: spacing(),
+  fontFamily: fontFamily(),
+  borderRadius: borderRadius(),
+});
 
 export type { BorderRadius, BorderRadiusToken } from './borderRadius';
 export { borderRadius } from './borderRadius';
@@ -23,6 +21,8 @@ export { fontFamily } from './fontFamily';
 export type { FontSize, FontSizeToken } from './fontSize';
 export { fontSize } from './fontSize';
 export type { AlignToken, JustifyToken } from './layout';
+export type { PaddingProps, ResolvedPadding } from './padding';
+export { getPadding } from './padding';
 export type { Spacing, SpacingToken } from './spacing';
 export { spacing } from './spacing';
 export { createTheme };
