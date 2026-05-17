@@ -10,8 +10,6 @@ export interface ContainerProps {
   padding?: SpacingToken;
   paddingHorizontal?: SpacingToken;
   paddingVertical?: SpacingToken;
-  justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
-  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch';
   children?: ReactNode;
 }
 
@@ -25,8 +23,6 @@ const CUSTOM_PROPS = new Set<string>([
   'padding',
   'paddingHorizontal',
   'paddingVertical',
-  'justifyContent',
-  'alignItems',
 ]);
 
 const StyledContainer = styled.View.withConfig({
@@ -41,8 +37,6 @@ const StyledContainer = styled.View.withConfig({
     paddingHorizontal ? `padding-horizontal: ${theme.spacing[paddingHorizontal]}px;` : ''}
   ${({ theme, paddingVertical }) =>
     paddingVertical ? `padding-vertical: ${theme.spacing[paddingVertical]}px;` : ''}
-  ${({ justifyContent }) => (justifyContent ? `justify-content: ${justifyContent};` : '')}
-  ${({ alignItems }) => (alignItems ? `align-items: ${alignItems};` : '')}
 `;
 
 export function Container({ children, ...styleProps }: ContainerProps) {

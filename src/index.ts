@@ -44,6 +44,7 @@ export { useLoadFonts } from './contexts';
 export { LoadFontsProvider, ThemeProvider } from './providers';
 
 export type {
+  AlignToken,
   BorderRadius,
   BorderRadiusToken,
   Colors,
@@ -52,6 +53,7 @@ export type {
   FontFamilyToken,
   FontSize,
   FontSizeToken,
+  JustifyToken,
   Spacing,
   SpacingToken,
   ThemeColors,

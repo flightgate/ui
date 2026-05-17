@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
-import type { ColorToken, SpacingToken } from '../../theme';
+import type { BorderRadiusToken, ColorToken, SpacingToken } from '../../theme';
 import { Row } from '../Row';
 import { Text } from '../Text';
 
@@ -15,6 +15,7 @@ export interface ButtonProps {
   bg?: ColorToken;
   color?: ColorToken;
   borderColor?: ColorToken;
+  radius?: BorderRadiusToken;
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
@@ -26,6 +27,7 @@ const SIZE_HEIGHT: Record<ButtonSize, number> = { sm: 40, md: 48, lg: 56 };
 const StyledButton = styled.TouchableOpacity<{
   $bg: ColorToken;
   $borderColor?: ColorToken;
+  $radius: BorderRadiusToken;
   $size: ButtonSize;
 }>`
   height: ${({ $size }) => SIZE_HEIGHT[$size]}px;
@@ -35,7 +37,7 @@ const StyledButton = styled.TouchableOpacity<{
   border-width: ${({ $borderColor }) => ($borderColor ? 1 : 0)}px;
   border-color: ${({ theme, $borderColor }) =>
     $borderColor ? theme.colors[$borderColor] : 'transparent'};
-  border-radius: ${({ theme }) => theme.borderRadius.md}px;
+  border-radius: ${({ theme, $radius }) => theme.borderRadius[$radius]}px;
   justify-content: center;
   align-items: center;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
@@ -49,6 +51,7 @@ export function Button({
   bg = 'primary',
   color,
   borderColor,
+  radius = 'md',
   size = 'md',
   disabled,
   loading,
@@ -70,6 +73,7 @@ export function Button({
     <StyledButton
       $bg={bg}
       $borderColor={borderColor}
+      $radius={radius}
       $size={size}
       disabled={disabled || loading}
       onPress={onPress}
@@ -77,7 +81,7 @@ export function Button({
       {loading ? (
         <ActivityIndicator size="small" color={indicatorColor} />
       ) : (
-        <Row gap={gap} style={{ alignItems: 'center' }}>
+        <Row gap={gap} alignItems="center">
           {prefixIcon}
           {children && (
             <Text weight="medium" color={textColor}>

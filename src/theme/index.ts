@@ -22,6 +22,7 @@ export type { FontFamily, FontFamilyToken } from './fontFamily';
 export { fontFamily } from './fontFamily';
 export type { FontSize, FontSizeToken } from './fontSize';
 export { fontSize } from './fontSize';
+export type { AlignToken, JustifyToken } from './layout';
 export type { Spacing, SpacingToken } from './spacing';
 export { spacing } from './spacing';
 export { createTheme };
