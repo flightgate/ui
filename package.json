@@ -14,13 +14,10 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish",
-    "prepare": "husky",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "prepare": "husky"
   },
   "peerDependencies": {
     "expo": ">=52.0.0",
-    "react": ">=18.0.0",
     "react-hook-form": ">=7.0.0",
     "react-native": ">=0.76.0",
     "react-native-gesture-handler": ">=2.0.0",
@@ -51,35 +48,21 @@
     "*.{ts,tsx}": "biome check"
   },
   "devDependencies": {
-    "@babel/core": "7.26.10",
-    "@babel/preset-env": "7.26.9",
-    "@babel/preset-react": "7.26.3",
-    "@babel/preset-typescript": "7.27.0",
     "@biomejs/biome": "2.4.15",
     "@changesets/cli": "2.31.0",
-    "@storybook/addon-essentials": "8.5.3",
-    "@storybook/addon-webpack5-compiler-babel": "4.0.1",
-    "@storybook/react": "8.5.3",
-    "@storybook/react-webpack5": "8.5.3",
-    "@storybook/test": "8.5.3",
     "@types/node": "^25.8.0",
     "@types/react": "^19.2.14",
-    "babel-loader": "9.2.1",
     "expo": "55.0.24",
     "husky": "9.1.7",
     "lint-staged": "17.0.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
     "react-hook-form": "7.54.2",
     "react-native-gesture-handler": "2.24.0",
     "react-native-modalize": "2.1.1",
     "react-native-reanimated": "3.17.5",
     "react-native-toast-message": "2.3.0",
     "react-native-web": "0.19.13",
-    "storybook": "8.5.3",
     "styled-components": "6.1.18",
-    "typescript": "6.0.3",
-    "webpack": "5.99.0"
+    "typescript": "6.0.3"
   },
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.4.2"
