@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form';
 import { Animated } from 'react-native';
+import { Text } from 'src/components';
 import styled, { useTheme } from 'styled-components/native';
-import { Text } from '../Text';
 
 export interface SwitchProps<T extends FieldValues> {
   name: Path<T>;

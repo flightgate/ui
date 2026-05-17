@@ -5,11 +5,10 @@ import {
   Montserrat_700Bold,
   useFonts,
 } from '@expo-google-fonts/montserrat';
-import type React from 'react';
-import { useMemo } from 'react';
-import { LoadFontsContext } from '../contexts';
+import { type PropsWithChildren, useMemo } from 'react';
+import { LoadFontsContext } from 'src/contexts';
 
-const LoadFontsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+const LoadFontsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [loaded, error] = useFonts({
     Montserrat_300Light,
     Montserrat_400Regular,

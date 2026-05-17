@@ -1,6 +1,6 @@
+import { Text } from 'src/components';
+import type { FontSizeToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { FontSizeToken } from '../../theme';
-import { Text } from '../Text';
 
 export interface LinkProps {
   children: string;

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
+import type { AlignToken, JustifyToken, SpacingToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { AlignToken, JustifyToken, SpacingToken } from '../../theme';
 
 export interface RowProps {
   gap?: SpacingToken;

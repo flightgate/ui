@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { View } from 'react-native';
-import { Text } from '../Text';
-import { Card } from './Card';
+import { Card, Text } from 'src/components';
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
@@ -20,7 +19,7 @@ type Story = StoryObj<typeof Card>;
 
 const SampleContent = () => (
   <View style={{ gap: 8 }}>
-    <Text size="md" weight="semibold">
+    <Text size="md" weight="bold">
       Título do card
     </Text>
     <Text size="sm" color="textSecondary">
@@ -63,7 +62,7 @@ export const CustomBackground: Story = {
   render: () => (
     <View style={{ maxWidth: 360 }}>
       <Card bg="primary">
-        <Text size="md" weight="semibold" color="white">
+        <Text size="md" weight="bold" color="white">
           Card com cor de fundo
         </Text>
       </Card>

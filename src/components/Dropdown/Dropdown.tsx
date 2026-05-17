@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal, Pressable, ScrollView } from 'react-native';
+import { Text } from 'src/components';
 import styled from 'styled-components/native';
-import { Text } from '../Text';
 
 export interface DropdownOption {
   label: string;

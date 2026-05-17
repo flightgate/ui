@@ -1,8 +1,7 @@
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
+import { Column, Text } from 'src/components';
 import styled from 'styled-components/native';
-import { Column } from '../Column';
-import { Text } from '../Text';
 
 export interface InputProps<T extends FieldValues> {
   name: Path<T>;

@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
+import type { ThemeColors } from 'src/theme';
+import { createTheme } from 'src/theme';
 import { ThemeProvider as StyledProvider } from 'styled-components/native';
-import type { ThemeColors } from '../theme';
-import { createTheme } from '../theme';
 
 interface ThemeProviderProps extends ThemeColors {
   children: ReactNode;

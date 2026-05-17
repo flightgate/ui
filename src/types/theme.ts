@@ -1,5 +1,5 @@
 import 'styled-components/native';
-import type { BorderRadius, Colors, FontFamily, FontSize, Spacing } from '../theme';
+import type { BorderRadius, Colors, FontFamily, FontSize, Spacing } from 'src/theme';
 
 export interface Theme {
   colors: Colors;

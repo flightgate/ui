@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
+import type { ColorToken, SpacingToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { ColorToken, SpacingToken } from '../../theme';
 
 export interface CardProps {
   children?: ReactNode;

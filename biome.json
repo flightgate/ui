@@ -16,7 +16,34 @@
         "noExplicitAny": "error"
       },
       "style": {
-        "useConst": "error"
+        "useConst": "error",
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "react": {
+                "importNames": ["default"]
+              },
+              "expo-router": {
+                "importNames": ["router"]
+              }
+            },
+            "patterns": [
+              {
+                "group": ["../*"],
+                "message": "Using '../*' is not encouraged"
+              },
+              {
+                "group": ["../../*"],
+                "message": "Using '../../*' is not encouraged"
+              },
+              {
+                "group": ["../../../*"],
+                "message": "Using '../../../*' is not encouraged"
+              }
+            ]
+          }
+        }
       }
     }
   },

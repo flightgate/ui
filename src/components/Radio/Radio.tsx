@@ -1,6 +1,6 @@
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form';
+import { Text } from 'src/components';
 import styled from 'styled-components/native';
-import { Text } from '../Text';
 
 export interface RadioOption {
   label: string;
@@ -31,7 +31,7 @@ const StyledOuter = styled.View<{ $selected: boolean }>`
   border-radius: 10px;
   border-width: 2px;
   border-color: ${({ theme, $selected }) =>
-    $selected ? theme.colors.primary : theme.colors.border};
+    $selected ? theme.colors.primary : theme.colors.borderPrimary};
   justify-content: center;
   align-items: center;
 `;

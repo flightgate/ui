@@ -1,7 +1,6 @@
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form';
+import { Dropdown, type DropdownOption, Text } from 'src/components';
 import styled from 'styled-components/native';
-import { Dropdown, type DropdownOption } from '../Dropdown';
-import { Text } from '../Text';
 
 export interface SelectProps<T extends FieldValues> {
   name: Path<T>;

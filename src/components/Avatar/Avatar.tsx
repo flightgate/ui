@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
+import { Text } from 'src/components';
+import type { ColorToken, FontSizeToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { ColorToken, FontSizeToken } from '../../theme';
-import { Text } from '../Text';
 
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
 

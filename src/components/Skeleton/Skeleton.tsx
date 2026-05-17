@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, type LayoutChangeEvent } from 'react-native';
+import type { SpacingToken } from 'src/theme';
 import styled, { useTheme } from 'styled-components/native';
-import type { SpacingToken } from '../../theme';
 
 export type SkeletonVariant = 'text' | 'circle' | 'rect';
 

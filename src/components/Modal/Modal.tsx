@@ -1,7 +1,7 @@
 import { forwardRef, type ReactNode } from 'react';
 import { Modalize } from 'react-native-modalize';
+import { Text } from 'src/components';
 import styled, { useTheme } from 'styled-components/native';
-import { Text } from '../Text';
 
 export interface ModalProps {
   title?: string;
@@ -39,7 +39,7 @@ export const Modal = forwardRef<Modalize, ModalProps>(
       >
         {title && (
           <StyledHeader>
-            <Text size="lg" weight="semibold">
+            <Text size="lg" weight="medium">
               {title}
             </Text>
           </StyledHeader>

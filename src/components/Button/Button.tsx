@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
+import { Row, Text } from 'src/components';
+import type { BorderRadiusToken, ColorToken, SpacingToken } from 'src/theme';
 import styled, { useTheme } from 'styled-components/native';
-import type { BorderRadiusToken, ColorToken, SpacingToken } from '../../theme';
-import { Row } from '../Row';
-import { Text } from '../Text';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 

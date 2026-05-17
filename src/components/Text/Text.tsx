@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
+import type { ColorToken, FontFamilyToken, FontSizeToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { ColorToken, FontFamilyToken, FontSizeToken } from '../../theme';
 
 export interface TextProps {
   size?: FontSizeToken;

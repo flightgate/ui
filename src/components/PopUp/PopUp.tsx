@@ -1,7 +1,7 @@
 import { forwardRef, type ReactNode } from 'react';
 import { Modalize } from 'react-native-modalize';
+import { Text } from 'src/components';
 import styled, { useTheme } from 'styled-components/native';
-import { Text } from '../Text';
 
 export interface PopUpProps {
   title?: string;
@@ -36,7 +36,7 @@ export const PopUp = forwardRef<Modalize, PopUpProps>(
       >
         {title && (
           <StyledHeader>
-            <Text size="lg" weight="semibold">
+            <Text size="lg" weight="medium">
               {title}
             </Text>
           </StyledHeader>

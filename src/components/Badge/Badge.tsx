@@ -1,6 +1,6 @@
+import { Text } from 'src/components';
+import type { ColorToken } from 'src/theme';
 import styled from 'styled-components/native';
-import type { ColorToken } from '../../theme';
-import { Text } from '../Text';
 
 export type BadgeVariant = 'success' | 'danger' | 'warning' | 'info' | 'neutral';
 
