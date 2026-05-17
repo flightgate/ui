@@ -28,7 +28,7 @@ export const Danger: Story = {
 export const Outline: Story = {
   args: {
     children: 'Cancelar',
-    bg: 'none',
+    bg: 'transparent',
     borderColor: 'borderPrimary',
     size: 'md',
     onPress: () => {},
@@ -36,7 +36,7 @@ export const Outline: Story = {
 };
 
 export const Ghost: Story = {
-  args: { children: 'Saiba mais', bg: 'none', size: 'md', onPress: () => {} },
+  args: { children: 'Saiba mais', bg: 'transparent', size: 'md', onPress: () => {} },
 };
 
 export const Subtle: Story = {

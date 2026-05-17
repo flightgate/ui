@@ -1,6 +1,6 @@
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import type { ColorKey, FontSizeKey } from '../../theme';
+import type { ColorToken, FontSizeToken } from '../../theme';
 import { Text } from '../Text';
 
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -9,23 +9,22 @@ export interface AvatarProps {
   source?: string;
   initials?: string;
   size?: AvatarSize;
-  bg?: ColorKey | (string & {});
+  bg?: ColorToken;
 }
 
 const SIZE_DIMENSIONS: Record<AvatarSize, number> = { sm: 32, md: 40, lg: 56, xl: 72 };
-const SIZE_FONT: Record<AvatarSize, FontSizeKey> = { sm: 'xs', md: 'sm', lg: 'md', xl: 'lg' };
+const SIZE_FONT: Record<AvatarSize, FontSizeToken> = { sm: 'xs', md: 'sm', lg: 'md', xl: 'lg' };
 
-const StyledContainer = styled.View<{ $size: number; $bg?: string }>`
+const StyledContainer = styled.View<{ $size: number; $bg: ColorToken }>`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ $size }) => $size / 2}px;
-  background-color: ${({ theme, $bg }) =>
-    $bg ? (theme.colors[$bg as ColorKey] ?? $bg) : theme.colors.primary};
+  background-color: ${({ theme, $bg }) => theme.colors[$bg]};
   justify-content: center;
   align-items: center;
 `;
 
-export function Avatar({ source, initials, size = 'md', bg }: AvatarProps) {
+export function Avatar({ source, initials, size = 'md', bg = 'primary' }: AvatarProps) {
   const dim = SIZE_DIMENSIONS[size];
 
   if (source) {
@@ -35,7 +34,7 @@ export function Avatar({ source, initials, size = 'md', bg }: AvatarProps) {
   }
 
   return (
-    <StyledContainer $size={dim} $bg={bg as string | undefined}>
+    <StyledContainer $size={dim} $bg={bg}>
       <Text size={SIZE_FONT[size]} color="white" align="center">
         {(initials ?? '?').substring(0, 2).toUpperCase()}
       </Text>

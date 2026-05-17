@@ -1,20 +1,19 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components/native';
-import type { ColorKey, SpacingKey } from '../../theme';
+import type { ColorToken, SpacingToken } from '../../theme';
 
 export interface CardProps {
   children?: ReactNode;
-  padding?: SpacingKey;
-  bg?: ColorKey | (string & {});
+  padding?: SpacingToken;
+  bg?: ColorToken;
 }
 
 const CUSTOM_PROPS = new Set(['padding', 'bg']);
 
 const StyledCard = styled.View.withConfig({
   shouldForwardProp: (prop) => !CUSTOM_PROPS.has(prop),
-})<{ padding?: SpacingKey; bg?: string }>`
-  background-color: ${({ theme, bg }) =>
-    bg ? (theme.colors[bg as ColorKey] ?? bg) : theme.colors.bgPrimary};
+})<{ padding?: SpacingToken; bg?: ColorToken }>`
+  background-color: ${({ theme, bg = 'bgPrimary' }) => theme.colors[bg]};
   border-radius: ${({ theme }) => theme.borderRadius.lg}px;
   padding: ${({ theme, padding = 'md' }) => theme.spacing[padding]}px;
   shadow-color: #000;
@@ -26,7 +25,7 @@ const StyledCard = styled.View.withConfig({
 
 export function Card({ children, padding, bg }: CardProps) {
   return (
-    <StyledCard padding={padding} bg={bg as string | undefined}>
+    <StyledCard padding={padding} bg={bg}>
       {children}
     </StyledCard>
   );

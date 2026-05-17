@@ -7,5 +7,5 @@ const fontFamily = () => {
 };
 
 export type FontFamily = ReturnType<typeof fontFamily>;
-export type FontFamilyKey = keyof FontFamily;
+export type FontFamilyToken = keyof FontFamily;
 export { fontFamily };

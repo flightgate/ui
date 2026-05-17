@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, type LayoutChangeEvent } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
-import type { SpacingKey } from '../../theme';
+import type { SpacingToken } from '../../theme';
 
 export type SkeletonVariant = 'text' | 'circle' | 'rect';
 
@@ -11,7 +11,7 @@ export interface SkeletonProps {
   height?: number;
   borderRadius?: number;
   lines?: number;
-  gap?: SpacingKey;
+  gap?: SpacingToken;
 }
 
 const StyledBlock = styled.View<{ $width: number | string; $height: number; $radius: number }>`

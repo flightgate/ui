@@ -45,15 +45,15 @@ export { LoadFontsProvider, ThemeProvider } from './providers';
 
 export type {
   BorderRadius,
-  BorderRadiusKey,
-  ColorKey,
+  BorderRadiusToken,
   Colors,
+  ColorToken,
   FontFamily,
-  FontFamilyKey,
+  FontFamilyToken,
   FontSize,
-  FontSizeKey,
+  FontSizeToken,
   Spacing,
-  SpacingKey,
+  SpacingToken,
   ThemeColors,
 } from './theme';
 export {

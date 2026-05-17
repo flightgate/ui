@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
-import type { ColorKey, SpacingKey } from '../../theme';
+import type { ColorToken, SpacingToken } from '../../theme';
 import { Row } from '../Row';
 import { Text } from '../Text';
 
@@ -11,10 +11,10 @@ export interface ButtonProps {
   children?: string;
   prefixIcon?: ReactNode;
   suffixIcon?: ReactNode;
-  gap?: SpacingKey;
-  bg?: ColorKey | 'none';
-  color?: ColorKey;
-  borderColor?: ColorKey;
+  gap?: SpacingToken;
+  bg?: ColorToken;
+  color?: ColorToken;
+  borderColor?: ColorToken;
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
@@ -24,14 +24,14 @@ export interface ButtonProps {
 const SIZE_HEIGHT: Record<ButtonSize, number> = { sm: 40, md: 48, lg: 56 };
 
 const StyledButton = styled.TouchableOpacity<{
-  $bg: ColorKey | 'none';
-  $borderColor?: ColorKey;
+  $bg: ColorToken;
+  $borderColor?: ColorToken;
   $size: ButtonSize;
 }>`
   height: ${({ $size }) => SIZE_HEIGHT[$size]}px;
   padding: 0 ${({ theme }) => theme.spacing.md}px;
   background-color: ${({ theme, $bg, disabled }) =>
-    disabled ? theme.colors.bgSecondary : $bg === 'none' ? 'transparent' : theme.colors[$bg]};
+    disabled ? theme.colors.bgSecondary : theme.colors[$bg]};
   border-width: ${({ $borderColor }) => ($borderColor ? 1 : 0)}px;
   border-color: ${({ theme, $borderColor }) =>
     $borderColor ? theme.colors[$borderColor] : 'transparent'};
@@ -60,11 +60,11 @@ export function Button({
     console.error('[@flightgate/ui] Button: requires children, prefixIcon, or suffixIcon');
   }
 
-  const textColor: ColorKey = disabled
+  const textColor: ColorToken = disabled
     ? 'textTertiary'
-    : (color ?? (bg === 'none' ? 'primary' : 'white'));
+    : (color ?? (bg === 'transparent' ? 'primary' : 'white'));
 
-  const indicatorColor = bg === 'none' ? theme.colors.primary : theme.colors.white;
+  const indicatorColor = bg === 'transparent' ? theme.colors.primary : theme.colors.white;
 
   return (
     <StyledButton

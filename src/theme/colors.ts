@@ -32,6 +32,6 @@ const colors = (input: ThemeColors) => {
 };
 
 export type Colors = ReturnType<typeof colors>;
-export type ColorKey = keyof Colors;
+export type ColorToken = keyof Colors;
 export type { ThemeColors };
 export { colors };

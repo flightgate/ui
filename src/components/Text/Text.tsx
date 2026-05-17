@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components/native';
-import type { ColorKey, FontFamilyKey, FontSizeKey } from '../../theme';
+import type { ColorToken, FontFamilyToken, FontSizeToken } from '../../theme';
 
 export interface TextProps {
-  size?: FontSizeKey;
-  weight?: FontFamilyKey;
-  color?: ColorKey | (string & {});
+  size?: FontSizeToken;
+  weight?: FontFamilyToken;
+  color?: ColorToken;
   align?: 'left' | 'center' | 'right';
   children: ReactNode;
 }
@@ -13,7 +13,7 @@ export interface TextProps {
 const StyledText = styled.Text<TextProps>`
   font-size: ${({ theme, size = 'md' }) => theme.fontSize[size]}px;
   font-family: ${({ theme, weight = 'regular' }) => theme.fontFamily[weight]};
-  color: ${({ theme, color = 'textPrimary' }) => theme.colors[color as ColorKey] ?? color};
+  color: ${({ theme, color = 'textPrimary' }) => theme.colors[color]};
   text-align: ${({ align = 'left' }) => align};
 `;
 

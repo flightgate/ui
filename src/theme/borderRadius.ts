@@ -11,5 +11,5 @@ const borderRadius = () => {
 };
 
 export type BorderRadius = ReturnType<typeof borderRadius>;
-export type BorderRadiusKey = keyof BorderRadius;
+export type BorderRadiusToken = keyof BorderRadius;
 export { borderRadius };

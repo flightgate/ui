@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import type { ColorKey } from '../../theme';
+import type { ColorToken } from '../../theme';
 import { Text } from '../Text';
 
 export type BadgeVariant = 'success' | 'danger' | 'warning' | 'info' | 'neutral';
@@ -9,7 +9,7 @@ export interface BadgeProps {
   variant?: BadgeVariant;
 }
 
-const BADGE_BG: Record<BadgeVariant, ColorKey> = {
+const BADGE_BG: Record<BadgeVariant, ColorToken> = {
   success: 'success',
   danger: 'danger',
   warning: 'warning',
@@ -17,7 +17,7 @@ const BADGE_BG: Record<BadgeVariant, ColorKey> = {
   neutral: 'bgSecondary',
 };
 
-const BADGE_TEXT: Record<BadgeVariant, ColorKey> = {
+const BADGE_TEXT: Record<BadgeVariant, ColorToken> = {
   success: 'white',
   danger: 'white',
   warning: 'black',
@@ -30,6 +30,7 @@ const StyledBadge = styled.View<{ $variant: BadgeVariant }>`
   padding: ${({ theme }) => theme.spacing.xxs}px ${({ theme }) => theme.spacing.xs}px;
   border-radius: ${({ theme }) => theme.borderRadius.full}px;
   background-color: ${({ theme, $variant }) => theme.colors[BADGE_BG[$variant]]};
+  width: fit-content;
 `;
 
 export function Badge({ label, variant = 'neutral' }: BadgeProps) {

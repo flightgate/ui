@@ -10,5 +10,5 @@ const fontSize = () => {
 };
 
 export type FontSize = ReturnType<typeof fontSize>;
-export type FontSizeKey = keyof FontSize;
+export type FontSizeToken = keyof FontSize;
 export { fontSize };

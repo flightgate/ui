@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
-import type { FontSizeKey } from '../../theme';
+import type { FontSizeToken } from '../../theme';
 import { Text } from '../Text';
 
 export interface LinkProps {
   children: string;
-  size?: FontSizeKey;
+  size?: FontSizeToken;
   onPress: () => void;
 }
 

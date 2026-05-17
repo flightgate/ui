@@ -12,5 +12,5 @@ const spacing = () => {
 };
 
 export type Spacing = ReturnType<typeof spacing>;
-export type SpacingKey = keyof Spacing;
+export type SpacingToken = keyof Spacing;
 export { spacing };

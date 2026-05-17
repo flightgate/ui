@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components/native';
-import type { ColorKey, SpacingKey } from '../../theme';
+import type { ColorToken, SpacingToken } from '../../theme';
 
 export interface ContainerProps {
-  bg?: ColorKey | (string & {});
+  bg?: ColorToken;
   flex?: number;
   width?: string | number;
   height?: string | number;
-  padding?: SpacingKey;
-  paddingHorizontal?: SpacingKey;
-  paddingVertical?: SpacingKey;
+  padding?: SpacingToken;
+  paddingHorizontal?: SpacingToken;
+  paddingVertical?: SpacingToken;
   justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
   alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch';
   children?: ReactNode;
@@ -32,7 +32,7 @@ const CUSTOM_PROPS = new Set<string>([
 const StyledContainer = styled.View.withConfig({
   shouldForwardProp: (prop) => !CUSTOM_PROPS.has(prop),
 })<ContainerStyleProps>`
-  ${({ theme, bg }) => (bg ? `background-color: ${theme.colors[bg as ColorKey] ?? bg};` : '')}
+  ${({ theme, bg }) => (bg ? `background-color: ${theme.colors[bg]};` : '')}
   ${({ flex }) => (flex !== undefined ? `flex: ${flex};` : '')}
   ${({ width }) => (width !== undefined ? `width: ${width};` : '')}
   ${({ height }) => (height !== undefined ? `height: ${height};` : '')}

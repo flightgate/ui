@@ -14,14 +14,14 @@ const createTheme = (themeColors: ThemeColors) => {
   };
 };
 
-export type { BorderRadius, BorderRadiusKey } from './borderRadius';
+export type { BorderRadius, BorderRadiusToken } from './borderRadius';
 export { borderRadius } from './borderRadius';
-export type { ColorKey, Colors, ThemeColors } from './colors';
+export type { Colors, ColorToken, ThemeColors } from './colors';
 export { colors } from './colors';
-export type { FontFamily, FontFamilyKey } from './fontFamily';
+export type { FontFamily, FontFamilyToken } from './fontFamily';
 export { fontFamily } from './fontFamily';
-export type { FontSize, FontSizeKey } from './fontSize';
+export type { FontSize, FontSizeToken } from './fontSize';
 export { fontSize } from './fontSize';
-export type { Spacing, SpacingKey } from './spacing';
+export type { Spacing, SpacingToken } from './spacing';
 export { spacing } from './spacing';
 export { createTheme };

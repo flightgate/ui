@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components/native';
-import type { SpacingKey } from '../../theme';
+import type { SpacingToken } from '../../theme';
 
 export interface ColumnProps {
-  gap?: SpacingKey;
+  gap?: SpacingToken;
   children?: ReactNode;
 }
 
